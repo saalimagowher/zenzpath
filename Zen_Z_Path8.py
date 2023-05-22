@@ -195,39 +195,39 @@ else:
         filter = (df['Zone'].isin(df_Zone)) & (df['District'].isin(df_District)) & (df['Type'].isin(df_Type)) & (df['Stream'].isin(df_Stream)) & (df['Branch'].isin(df_Branch)) 
         data = df[filter]
         grouped = data.groupby(['Zone','District', 'Type', 'Stream', 'Branch'])['Count'].nunique().reset_index()
-        st.markdown(grouped.style.hide_index().to_html(), unsafe_allow_html=True)
+        st.dataframe(grouped.set_index(grouped.columns[0]),width=1000)
     #_______________multivariate(4 variables)__________________       
     elif (df_Zone and df_District) and (df_Type and df_Stream):
         st.subheader("Distribution of Zone, District, Type & Stream")
         filter =(df['Zone'].isin(df_Zone)) & (df['District'].isin(df_District)) & (df['Type'].isin(df_Type)) & (df['Stream'].isin(df_Stream))
         data = df[filter]
         grouped = data.groupby(['Zone', 'District', 'Type', 'Stream'])['Count'].nunique().reset_index()
-        st.markdown(grouped.style.hide_index().to_html(), unsafe_allow_html=True)
+        st.dataframe(grouped.set_index(grouped.columns[0]),width=1000)
     elif (df_Zone and df_District) and (df_Stream and df_Branch):
         st.subheader("Distribution of Zone, District, Stream & Branch")
         filter = (df['Zone'].isin(df_Zone)) & (df['District'].isin(df_District)) & (df['Stream'].isin(df_Stream)) & (df['Branch'].isin(df_Branch))
         data = df[filter]
         grouped = data.groupby(['Zone', 'District', 'Stream', 'Branch'])['Count'].nunique().reset_index()
-        st.markdown(grouped.style.hide_index().to_html(), unsafe_allow_html=True)
+        st.dataframe(grouped.set_index(grouped.columns[0]),width=1000)
     elif (df_Zone and df_Type) and (df_Stream and df_Branch):
         st.subheader("Distribution of Zone, Type, Stream & Branch")
         filter = (df['Zone'].isin(df_Zone)) & (df['Type'].isin(df_Type)) & (df['Stream'].isin(df_Stream)) & (df['Branch'].isin(df_Branch))
         data = df[filter]
         grouped = data.groupby(['Zone', 'Type', 'Stream', 'Branch'])['Count'].nunique().reset_index()
-        st.markdown(grouped.style.hide_index().to_html(), unsafe_allow_html=True)
+        st.dataframe(grouped.set_index(grouped.columns[0]),width=1000)
 
     elif ((df_Zone and df_District) and (df_Type and df_Branch)):
         st.subheader("Distribution of Zone, District, Type & Branch")
         filter = (df['Zone'].isin(df_Zone)) & (df['District'].isin(df_District)) & (df['Type'].isin(df_Type)) & (df['Branch'].isin(df_Branch))
         data = df[filter]
         grouped = data.groupby(['Zone', 'District', 'Type', 'Branch'])['Count'].nunique().reset_index()
-        st.markdown(grouped.style.hide_index().to_html(), unsafe_allow_html=True)
+        st.dataframe(grouped.set_index(grouped.columns[0]),width=1000)
     elif ((df_Stream and df_District) and (df_Type and df_Branch)):
         st.subheader("Distribution of Stream, District, Type & Branch")
         filter = (df['Stream'].isin(df_Stream)) & (df['District'].isin(df_District)) & (df['Type'].isin(df_Type)) & (df['Branch'].isin(df_Branch))
         data = df[filter]
         grouped = data.groupby(['Stream', 'District', 'Type', 'Branch'])['Count'].nunique().reset_index()
-        st.markdown(grouped.style.hide_index().to_html(), unsafe_allow_html=True)
+        st.dataframe(grouped.set_index(grouped.columns[0]),width=1000)
     #__________multivariate(3 variables)_________________    
     elif ((df_Zone and df_District) and df_Type):
         st.subheader("Distribution of Zone, District & Type")
@@ -237,7 +237,7 @@ else:
         fig = px.bar(grouped, x='Zone', y='Count', color='District', barmode='group', facet_col='Type', text_auto=True)
         fig.update_layout(legend=dict(orientation='h'))
         st.plotly_chart(fig,use_container_width=True)
-        st.markdown(grouped.style.hide_index().to_html(), unsafe_allow_html=True)
+        st.dataframe(grouped.set_index(grouped.columns[0]),width=1000)
 
     elif ((df_Zone and df_Type) and df_Stream):
         st.subheader("Distribution of Zone, Type & Stream")
@@ -248,7 +248,7 @@ else:
         fig.update_traces(textfont_size=14)
         fig.update_layout(legend=dict(orientation='h'))
         st.plotly_chart(fig,use_container_width=True)
-        st.markdown(grouped.style.hide_index().to_html(), unsafe_allow_html=True)
+        st.dataframe(grouped.set_index(grouped.columns[0]),width=1000)
     elif ((df_Zone and df_District) and df_Stream):
         st.subheader("Distribution of Zone, District & Stream")
         filter = (df['Zone'].isin(df_Zone)) & (df['District'].isin(df_District)) &  (df['Stream'].isin(df_Stream))
@@ -258,7 +258,7 @@ else:
         fig.update_traces(textfont_size=14)
         fig.update_layout(legend=dict(orientation='h'))
         st.plotly_chart(fig,use_container_width=True)
-        st.markdown(grouped.style.hide_index().to_html(), unsafe_allow_html=True)
+        st.dataframe(grouped.set_index(grouped.columns[0]),width=1000)
     elif ((df_District and df_Stream) and df_Branch):
         st.subheader("Distribution of District, Stream & Branch")
         filter = (df['District'].isin(df_District)) & (df['Stream'].isin(df_Stream)) &  (df['Branch'].isin(df_Branch))
@@ -268,7 +268,7 @@ else:
         fig.update_traces(textfont_size=14)
         fig.update_layout(legend=dict(orientation='h'))
         st.plotly_chart(fig,use_container_width=True)
-        st.markdown(grouped.style.hide_index().to_html(), unsafe_allow_html=True)
+        st.dataframe(grouped.set_index(grouped.columns[0]),width=1000)
     elif ((df_Type and df_District) and df_Stream):
         st.subheader("Distribution of Type, District & Stream")
         filter = (df['Type'].isin(df_Type)) & (df['District'].isin(df_District)) &  (df['Stream'].isin(df_Stream))
@@ -278,7 +278,7 @@ else:
         fig.update_traces(textfont_size=14)
         fig.update_layout(legend=dict(orientation='h'))
         st.plotly_chart(fig,use_container_width=True)
-        st.markdown(grouped.style.hide_index().to_html(), unsafe_allow_html=True)
+        st.dataframe(grouped.set_index(grouped.columns[0]),width=1000)
     elif ((df_Type and df_District) and df_Branch):
         st.subheader("Distribution of Type, District & Branch")
         filter = (df['Type'].isin(df_Type)) & (df['District'].isin(df_District)) &  (df['Branch'].isin(df_Branch))
@@ -288,7 +288,7 @@ else:
         fig.update_traces(textfont_size=14)
         fig.update_layout(legend=dict(orientation='h'))
         st.plotly_chart(fig,use_container_width=True)
-        st.markdown(grouped.style.hide_index().to_html(), unsafe_allow_html=True)
+        st.dataframe(grouped.set_index(grouped.columns[0]),width=1000)
     elif ((df_Type and df_Stream) and df_Branch):
         st.subheader("Distribution of Type, Stream & Branch")
         filter = (df['Type'].isin(df_Type)) & (df['Stream'].isin(df_Stream)) &  (df['Branch'].isin(df_Branch))
@@ -298,7 +298,7 @@ else:
         fig.update_traces(textfont_size=14)
         fig.update_layout(legend=dict(orientation='h'))
         st.plotly_chart(fig,use_container_width=True)
-        st.markdown(grouped.style.hide_index().to_html(), unsafe_allow_html=True)
+        st.dataframe(grouped.set_index(grouped.columns[0]),width=1000)
     elif ((df_Zone and df_District) and df_Branch):
         st.subheader("Distribution of Zone, District & Branch")
         filter = (df['Zone'].isin(df_Zone)) & (df['District'].isin(df_District)) &  (df['Branch'].isin(df_Branch))
@@ -308,7 +308,7 @@ else:
         fig.update_traces(textfont_size=14)
         fig.update_layout(legend=dict(orientation='h'))
         st.plotly_chart(fig,use_container_width=True)
-        st.markdown(grouped.style.hide_index().to_html(), unsafe_allow_html=True)
+        st.dataframe(grouped.set_index(grouped.columns[0]),width=1000)
     elif ((df_Zone and df_Stream) and df_Branch):
         st.subheader("Distribution of Zone, Stream & Branch")
         st.header("Distribution of Zone, Stream & Branch")
@@ -319,7 +319,7 @@ else:
         fig.update_traces(textfont_size=14)
         fig.update_layout(legend=dict(orientation='h'))
         st.plotly_chart(fig,use_container_width=True)
-        st.markdown(grouped.style.hide_index().to_html(), unsafe_allow_html=True)
+        st.dataframe(grouped.set_index(grouped.columns[0]),width=1000)
     elif ((df_Zone and df_Type) and df_Branch):
         st.subheader("Distribution of Zone, Type & Branch")
         filter = (df['Zone'].isin(df_Zone)) & (df['Type'].isin(df_Type)) &  (df['Branch'].isin(df_Branch))
@@ -329,7 +329,7 @@ else:
         fig.update_traces(textfont_size=14)
         fig.update_layout(legend=dict(orientation='h'))
         st.plotly_chart(fig,use_container_width=True)
-        st.markdown(grouped.style.hide_index().to_html(), unsafe_allow_html=True)
+        st.dataframe(grouped.set_index(grouped.columns[0]),width=1000)
     #_____________bivariate(district)_____________
     elif (df_District and df_Type):
         st.subheader("Distribution of District & Type")
@@ -339,7 +339,7 @@ else:
         fig = px.bar(grouped, x='District', y='Count', color='Type', barmode='group', text_auto=True) 
         fig.update_layout(legend=dict(orientation='h', yanchor='top', y=1.1))
         st.plotly_chart(fig,use_container_width=True)
-        st.markdown(grouped.style.hide_index().to_html(), unsafe_allow_html=True)
+        st.dataframe(grouped.set_index(grouped.columns[0]),width=1000)
     elif (df_District and df_Stream):
         st.subheader("Distribution of District & Stream")
         filter = (df['District'].isin(df_District)) & (df['Stream'].isin(df_Stream))  
@@ -348,7 +348,7 @@ else:
         fig = px.bar(grouped, x='District', y='Count', color='Stream', barmode='group', text_auto=True)
         fig.update_layout(legend=dict(orientation='h', yanchor='top', y=1.1))
         st.plotly_chart(fig,use_container_width=True)
-        st.markdown(grouped.style.hide_index().to_html(), unsafe_allow_html=True)
+        st.dataframe(grouped.set_index(grouped.columns[0]),width=1000)
     elif (df_District and df_Branch):
         st.subheader("Distribution of District & Branch")
         filter = (df['District'].isin(df_District)) & (df['Branch'].isin(df_Branch))  
@@ -357,7 +357,7 @@ else:
         fig = px.bar(grouped, x='District', y='Count', color='Branch', barmode='group', text_auto=True)
         fig.update_layout(legend=dict(orientation='h', yanchor='top', y=1.1))
         st.plotly_chart(fig,use_container_width=True)
-        st.markdown(grouped.style.hide_index().to_html(), unsafe_allow_html=True)
+        st.dataframe(grouped.set_index(grouped.columns[0]),width=1000)
     ###===========bivariate (Type)==================================================
     elif (df_Type and df_Stream):
         st.subheader("Distribution of Type & Stream")
@@ -367,7 +367,7 @@ else:
         fig = px.bar(grouped, x='Type', y='Count', color='Stream', barmode='group', text_auto=True)
         fig.update_layout(legend=dict(orientation='h', yanchor='top', y=1.1))
         st.plotly_chart(fig,use_container_width=True)
-        st.markdown(grouped.style.hide_index().to_html(), unsafe_allow_html=True)
+        st.dataframe(grouped.set_index(grouped.columns[0]),width=1000)
     elif (df_Type and df_Branch):
         st.subheader("Distribution of Type & Branch")
         filter = (df['Type'].isin(df_Type)) & (df['Branch'].isin(df_Branch))  
@@ -376,7 +376,7 @@ else:
         fig = px.bar(grouped, x='Type', y='Count', color='Branch', barmode='group', text_auto=True)
         fig.update_layout(legend=dict(orientation='h', yanchor='top', y=1.1))
         st.plotly_chart(fig,use_container_width=True)
-        st.markdown(grouped.style.hide_index().to_html(), unsafe_allow_html=True)
+        st.dataframe(grouped.set_index(grouped.columns[0]),width=1000)
     ###==========================bivariate(Stream)===================================
     elif (df_Stream and df_Branch):
         st.subheader("Distribution of Stream & Branch")
@@ -386,7 +386,7 @@ else:
         fig = px.bar(grouped, x='Stream', y='Count', color='Branch', barmode='group', text_auto=True)
         fig.update_layout(legend=dict(orientation='h', yanchor='top', y=1.1))
         st.plotly_chart(fig,use_container_width=True)
-        st.markdown(grouped.style.hide_index().to_html(), unsafe_allow_html=True)    
+        st.dataframe(grouped.set_index(grouped.columns[0]),width=1000)    
     #_____________bivariatre(Zone)___________________
     elif (df_Zone and df_District ):
         st.subheader("Distribution of Zone & District")
@@ -397,7 +397,7 @@ else:
         fig.update_layout(legend=dict(orientation='h', yanchor='top', y=1.1))
         st.plotly_chart(fig,use_container_width=True)
         fig.update_traces(textfont_size=18)
-        st.markdown(grouped.style.hide_index().to_html(), unsafe_allow_html=True)
+        st.dataframe(grouped.set_index(grouped.columns[0]),width=1000)
     elif (df_Zone and df_Type):
         st.subheader("Distribution of Zone & Type")
         filter = (df['Zone'].isin(df_Zone)) & (df['Type'].isin(df_Type))   
@@ -407,7 +407,7 @@ else:
         fig.update_layout(legend=dict(orientation='h', yanchor='top', y=1.1))
         st.plotly_chart(fig,use_container_width=True)
         fig.update_traces(textfont_size=18)
-        st.markdown(grouped.style.hide_index().to_html(), unsafe_allow_html=True)
+        st.dataframe(grouped.set_index(grouped.columns[0]),width=1000)
     elif (df_Zone and df_Stream):
         st.subheader("Distribution of Zone & Stream")
         filter = (df['Zone'].isin(df_Zone)) & (df['Stream'].isin(df_Stream))  
@@ -417,7 +417,7 @@ else:
         fig.update_layout(legend=dict(orientation='h', yanchor='top', y=1.1))
         st.plotly_chart(fig,use_container_width=True)
         fig.update_traces(textfont_size=18)
-        st.markdown(grouped.style.hide_index().to_html(), unsafe_allow_html=True)
+        st.dataframe(grouped.set_index(grouped.columns[0]),width=1000)
 
     elif (df_Zone and df_Branch):
         st.subheader("Distribution of Zone & Branch")
@@ -428,7 +428,7 @@ else:
         fig.update_layout(legend=dict(orientation='h', yanchor='top', y=1.1))
         st.plotly_chart(fig,use_container_width=True)
         fig.update_traces(textfont_size=18)
-        st.markdown(grouped.style.hide_index().to_html(), unsafe_allow_html=True)
+        st.dataframe(grouped.set_index(grouped.columns[0]),width=1000)
     #_______________univariate_____________        
 
     
@@ -441,7 +441,7 @@ else:
         fig.update_layout(legend=dict(orientation='h', yanchor='top', y=1.1))
         st.plotly_chart(fig,use_container_width=True)
         fig.update_traces(textfont_size=18)
-        st.markdown(grouped.style.hide_index().to_html(), unsafe_allow_html=True)
+        st.dataframe(grouped.set_index(grouped.columns[0]),width=1000)
         
     elif df_District :
         st.subheader("Distribution of District")
@@ -452,7 +452,7 @@ else:
         fig.update_layout(legend=dict(orientation='h', yanchor='top', y=1.1))
         st.plotly_chart(fig,use_container_width=True)
         fig.update_traces(textfont_size=18)
-        st.markdown(grouped.style.hide_index().to_html(), unsafe_allow_html=True)
+        st.dataframe(grouped.set_index(grouped.columns[0]),width=1000)
     elif df_Type:
         st.subheader("Distribution of Type")
         filter = (df['Type'].isin(df_Type))
@@ -462,7 +462,7 @@ else:
         fig.update_layout(legend=dict(orientation='h', yanchor='top', y=1.1))
         st.plotly_chart(fig,use_container_width=True)
         fig.update_traces(textfont_size=18)
-        st.markdown(grouped.style.hide_index().to_html(), unsafe_allow_html=True)
+        st.dataframe(grouped.set_index(grouped.columns[0]),width=1000)
     elif df_Stream:
         st.subheader("Distribution of Stream")
         filter = (df['Stream'].isin(df_Stream))
@@ -472,7 +472,7 @@ else:
         fig.update_layout(legend=dict(orientation='h', yanchor='top', y=1.1))
         st.plotly_chart(fig,use_container_width=True)
         fig.update_traces(textfont_size=18)
-        st.markdown(grouped.style.hide_index().to_html(), unsafe_allow_html=True)
+        st.dataframe(grouped.set_index(grouped.columns[0]),width=1000)
     elif df_Branch:
         st.subheader("Distribution of Branch")
         filter = (df['Branch'].isin(df_Branch))
@@ -482,7 +482,7 @@ else:
         fig.update_layout(legend=dict(orientation='h', yanchor='top', y=1.1))
         st.plotly_chart(fig,use_container_width=True)
         fig.update_traces(textfont_size=18)
-        st.markdown(grouped.style.hide_index().to_html(), unsafe_allow_html=True)
+        st.dataframe(grouped.set_index(grouped.columns[0]),width=1000)
     else:
 
         image = Image.open('ZenZPath.png')
