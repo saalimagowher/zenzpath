@@ -9,7 +9,7 @@ st.set_page_config(
     page_icon ="chart_with_upwards_trend",
     layout = "wide"
 )
-df = pd.read_csv(r'C:\Users\Hp\Downloads\Colleges_WithCourseDetails_V2.0.csv')
+df = pd.read_csv('Colleges_WithCourseDetails_V2.0.csv')
 st.markdown("<h2 style='text-align: center; color: steelblue;'>Zen_Z_Path</h2>", unsafe_allow_html=True)
 st.write("Please Check this out https://zenzpath.com/Dashboard")
 
